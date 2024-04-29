@@ -1,4 +1,4 @@
-const reveal = document.querySelector('.reveal');
+const reveals = Array.from(document.getElementsByClassName('reveal'));
 
 function isVicible(elem) {
     const { top, bottom } = elem.getBoundingClientRect();
@@ -14,16 +14,14 @@ function isVicible(elem) {
     return true;
 }
 
-setInterval(() => {
-    console.log(isVicible(reveal));
-    if (isVicible(reveal) === true) {
-        reveal.classList.add('reveal_active');
-    }
-    
-    if (isVicible(reveal) === false) {
-        reveal.classList.remove('reveal_active');
-    }
-    
-}, 1000)
-
-
+document.addEventListener('scroll', () => {
+    reveals.forEach((elem) => {
+        if (isVicible(elem) === true) {
+            elem.classList.add('reveal_active');
+        }
+        
+        if (isVicible(elem) === false) {
+            elem.classList.remove('reveal_active');
+        }
+    })
+})
