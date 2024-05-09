@@ -1,10 +1,26 @@
+const body = document.querySelector('body')
+body.insertAdjacentHTML('afterEnd', `<div class="tooltip"
+data-position="bottom"
+
+>
+</div>`);
+
+const tooltipEl = document.querySelector('.tooltip');
+
+
 document.addEventListener('click', function(event) {
 	event.preventDefault();
 	let target = event.target;
+    
+
 
 	if (target.classList.contains('has-tooltip')) {
 		const text = target.title;
-
+        
+        if (tooltipEl.textContent === text && tooltipEl.classList.contains('tooltip_active')) {
+            tooltipEl.classList.toggle('tooltip_active');
+            return;
+        }
 
         const position = {
             top: `left: ${target.offsetLeft +'px'}; top: ${target.offsetTop -30 +'px'}`,
@@ -12,25 +28,10 @@ document.addEventListener('click', function(event) {
             right: `left: ${target.offsetLeft + target.offsetWidth +'px'}; top: ${target.offsetTop +'px'}`,
             bottom: `left: ${target.offsetLeft +'px'}; top: ${target.offsetTop +20 +'px'}`,
         }
-
-        document.querySelectorAll('.tooltip_active').forEach((elem) => {
-            elem.classList.remove('tooltip_active');
-        })
-		target.insertAdjacentHTML('afterEnd', `<div class="tooltip"
-        data-position="bottom"
-        >
-        ${text}
-      </div>`);
-        let tipPos = document.querySelector('.tooltip').dataset.position;
-
-        console.log(tipPos);
-
-        let tip = document.querySelector('.tooltip');
-        tip.style = `${position[tipPos]}`;
-
-        console.log(position[tipPos]);
-
-        tip.classList.add('tooltip_active');
+		
+        tooltipEl.textContent = text;
+        tooltipEl.style = position[tooltipEl.dataset.position];
+        tooltipEl.classList.add('tooltip_active');
 
 	}
 
