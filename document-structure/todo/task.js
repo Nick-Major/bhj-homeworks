@@ -3,7 +3,10 @@ const input = document.getElementById('task__input');
 const tasksList = document.getElementById('tasks__list');
 btn.addEventListener('click', (event) => {
     event.preventDefault();
-    addNewTask();
+    if (input.value.trim() !== '') {
+        addNewTask();
+    }
+    
 })
 
 function addNewTask() {
@@ -15,9 +18,8 @@ function addNewTask() {
         <a href="#" class="task__remove">&times;</a>
     </div>
     `)
-    document.querySelectorAll('.task__remove').forEach((elem) => {
-        elem.addEventListener('click', removeTask);
-    })
+
+    document.querySelector('.task__remove').addEventListener('click', removeTask);
     input.value = '';
 }
 
