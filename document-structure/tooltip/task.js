@@ -1,17 +1,8 @@
-const body = document.querySelector('body')
-body.insertAdjacentHTML('afterEnd', `<div class="tooltip"
-data-position="bottom"
-
->
-</div>`);
-
 const tooltipEl = document.querySelector('.tooltip');
-
 
 document.addEventListener('click', function(event) {
 	event.preventDefault();
 	let target = event.target;
-    
 
 
 	if (target.classList.contains('has-tooltip')) {
