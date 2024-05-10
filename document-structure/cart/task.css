@@ -9,14 +9,24 @@ body {
 
 .cart__product {
   position: relative;
+  height: 85px;
+  background-color: #fff;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cart__product-count {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
   border: 2px solid green;
   border-radius: 50%;
-  padding: 2px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cart__product-image {
@@ -38,6 +48,7 @@ body {
 
 .product__image {
   width: 100px;
+  margin-top: 20px;
   object-fit: contain;
 }
 

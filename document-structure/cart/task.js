@@ -1,37 +1,23 @@
 const addFunc = (event) => {
     const findId = event.target.closest('.product').dataset.id;
-
+    const findImg = event.target.closest('.product__controls').previousElementSibling.src;
+    const quantityValue = event.target.closest('.product').querySelector('.product__quantity-value').textContent;
     const basket = document.querySelector('.cart__products');
+
     const product = Array.from(basket.querySelectorAll('.cart__product')).find((elem) => {
         return elem.dataset.id === findId;
     });
 
     if (product) {
-        const quantityValue = event.target.closest('.product').querySelector('.product__quantity-value');
-        product.lastElementChild.textContent = +product.lastElementChild.textContent + Number(quantityValue.textContent);
+        product.lastElementChild.textContent = +product.lastElementChild.textContent + Number(quantityValue);
         return;
     }
 
     if (event.target.classList.contains('product__add')) {
-        const quantityValue = event.target.closest('.product').querySelector('.product__quantity-value');
-        const idToCopy = event.target.closest('.product');
-        const cloneId = idToCopy.cloneNode(false);
-        cloneId.classList.replace('product', 'cart__product');
-
-        const imgToCopy = event.target.closest('.product__quantity').closest('.product__controls').previousElementSibling;
-        const clonedImg = imgToCopy.cloneNode(true);
-
-        const cartProducts = document.querySelector('.cart__products');
-        const cartProductCount = document.createElement('div');
-        cartProductCount.classList.add('cart__product-count');
-
-        if (!cartProducts.querySelector(`.cart__product[data-id="${findId}"]`)) {
-            cartProducts.insertAdjacentElement('afterBegin', cloneId);
-            cloneId.insertAdjacentElement('afterBegin', clonedImg);
-            cloneId.insertAdjacentElement('beforeEnd', cartProductCount);
-
-            cartProductCount.textContent = quantityValue.textContent;
-        }
+        basket.insertAdjacentHTML('afterbegin', `<div class="cart__product" data-id="${findId}">
+            <img class="cart__product-image" src="${findImg}">
+            <div class="cart__product-count">${quantityValue}</div>
+        </div>`)
     }
 
 }
