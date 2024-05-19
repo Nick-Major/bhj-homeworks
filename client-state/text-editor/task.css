@@ -8,3 +8,21 @@ textarea {
   border: 1px solid #e2e2e2;
   box-sizing: border-box;
 }
+
+#btn {
+  border-radius: 6px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+
+#btn:hover {
+  background-color: aqua;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
